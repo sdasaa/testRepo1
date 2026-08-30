@@ -1,0 +1,43 @@
+name: DeclarativeEnvVarsAndScopeDemo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1_initializeDelcarativeEnvVars:
+    runs-on: ubuntu-latest
+    env:
+      JOB1_VAR1 : JOB1_VALUE
+    steps:
+      - name: Job1_Step1
+        env:
+            J1_STEP1_VAR : J1_STEP1_VAL
+        run: | 
+              echo "Initialize a new ev at step1 scope"
+              echo "J1_STEP1_VAR=${J1_STEP1_VAR}"
+              echo "Accessing ev from Job scope, should Pass"
+              echo "JOB1_VAR1=${JOB1_VAR1}"
+              
+      - name: Job1_Step2
+        env:
+            J1_STEP2_VAR : J1_STEP2_VAL
+        run: |
+              echo " Initialized a new ev "
+              echo "J1_STEP2_VAR=${J1_STEP2_VAR}"
+              echo "Accessing ev from Job scope, should Pass"
+              echo "JOB1_VAR1=${JOB1_VAR1}"
+              echo "Accessing ev from Step1 scope in step2, should Fail"
+              echo "J1_STEP1_VAR=${J1_STEP1_VAR}"
+                   
+  job2_initializeDelcarativeEnvVars:
+    runs-on: ubuntu-latest
+    env:
+      JOB2_VAR1 : JOB2_VALUE
+    steps:
+      - name: Job2_Step1
+        run: |
+            echo "Accessing ev from job2 scope, Should Pass"
+            echo "JOB2_VAR1=${JOB2_VAR1}"
+            echo "Accessing ev from Job1 scope, Should Fail"
+            echo "JOB1_VAR1=${JOB1_VAR1}"
+      
