@@ -22,7 +22,7 @@ jobs:
         env:
             J1_STEP2_VAR : J1_STEP2_VAL
         run: |
-              echo " Initialized a new ev "
+              echo " Initialized a new ev at step2 scope"
               echo "J1_STEP2_VAR=${J1_STEP2_VAR}"
               echo "Accessing ev from Job scope, should Pass"
               echo "JOB1_VAR1=${JOB1_VAR1}"
