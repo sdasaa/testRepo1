@@ -16,8 +16,8 @@ on:
       - feature/newOrder
       - feature/macd_Upgrade
     paths:
-      - "/src/test/regression"
-      - "!src/test/regression/p4/*"
+      - "/src/test/regression/*"
+      - "!src/test/module1/*"
 
 jobs:
     runThisJob:
