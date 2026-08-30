@@ -24,5 +24,5 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: eventTriggerTypeDemo
-        run: |
+          run: |
               echo "This workflow is triggered by one among this event - manual | push | pull_request"
