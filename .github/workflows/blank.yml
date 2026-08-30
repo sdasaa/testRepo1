@@ -1,0 +1,42 @@
+name: gitHub_Output_Environment_Variables_Demo
+
+on: workflow_dispatch
+
+jobs:
+  githubOutput_GithubEnv_Initialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: initializeVariables
+        id: initializeVariablesID
+        run: |
+              foo1=bar1
+              echo "******** Writing variable to GITHUB_OUTPUT ********"
+              echo "foo1_op=${foo1}" >> "$GITHUB_OUTPUT"
+              echo "******** Writing variable to GITHUB_ENV ********"
+              echo "foo1_env=${foo1}" >> "$GITHUB_ENV"
+      - name: useTheVariables
+        id : useTheVariablesID
+        run : |
+              echo "**** Calling the Variables initialized in the PREVIOUS STEP of the SAME JOB"
+              echo "********** Both GITHUB_OUTPUT & GITHUB_ENV variables must be valid ********"
+              echo "GITHUB_OUTPUT -> foo1_op = ${{ steps.initializeVariablesID.outputs.foo1_op }}"
+              echo "GITHUB_ENV -> foo1_env = ${foo1_env}"
+              
+    outputs:
+      job_op_foo1 : ${{ steps.initializeVariablesID.outputs.foo1_op }}
+              
+  githubOutput_GithubEnv_Usage:
+    runs-on: ubuntu-latest
+    needs: githubOutput_GithubEnv_Initialize
+
+    steps:
+      - name: githubOuput_GithubEnv_Usage
+        run: |
+              echo " Calling the GITHUB_OUPUTS & GITHUB_ENV variables initialized in previous job"
+              echo " GITHUB_OUTPUT -> foo1= ${{ needs.githubOutput_GithubEnv_Initialize.outputs.job_op_foo1 }} "
+              echo " GITHUB_ENV    -> foo1 = ${foo1_env}"
+  
+    
+        
+        
+          
