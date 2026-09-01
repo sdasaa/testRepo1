@@ -1,0 +1,28 @@
+name: eventTriggerTypes
+on: 
+  workflow_dispatch:   
+  push:
+    branches:
+      - main
+      - feature/newOrder
+      - feature/macd_Upgrade
+  pull_request:
+    types: 
+      - assigned
+      - synchronize
+      - reopened
+    branches:
+      - main
+      - feature/newOrder
+      - feature/macd_Upgrade
+    paths:
+      - "/src/test/regression/*"
+      - "!src/test/module1/*"
+
+jobs:
+    runThisJob:
+      runs-on: ubuntu-latest
+      steps:
+        - name: eventTriggerTypeDemo
+          run: |
+              echo "This workflow is triggered by one among this event - manual | push | pull_request"
