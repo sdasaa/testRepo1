@@ -1,4 +1,4 @@
-name: eventTriggerTypes
+name: This is an Automatic pipeline that will run for event triggers- Push, MR & manual trigger
 on: 
   workflow_dispatch:   
   push:
@@ -20,7 +20,7 @@ on:
       - "!src/test/module1/*"
 
 jobs:
-    runThisJob:
+    Build_Auto_Pipeline:
       runs-on: ubuntu-latest
       steps:
         - name: eventTriggerTypeDemo
