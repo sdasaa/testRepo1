@@ -1,4 +1,5 @@
-name: This is an Automatic pipeline that will run for event triggers- Push, MR & manual trigger
+name: Build Auto Pipeline
+description: This is an Automatic pipeline that will run for event triggers- Push, MR & manual trigger
 on: 
   workflow_dispatch:   
   push:
