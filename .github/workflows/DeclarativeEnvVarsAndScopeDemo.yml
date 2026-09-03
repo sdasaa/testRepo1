@@ -1,5 +1,5 @@
-name: DeclarativeEnvVarsAndScopeDemo
-
+name: Inscript Declarative Env vars and its scope
+description: Declarative Env vars and its scope Demo
 on:
   workflow_dispatch:
 
