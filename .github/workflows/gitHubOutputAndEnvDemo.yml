@@ -1,4 +1,5 @@
-name: gitHub_Output_Environment_Variables_Demo
+name: GitHub Output and GitHub Environment Object Demo
+description: GitHub Output and GitHub Environment Object Demo
 
 on: workflow_dispatch
 
