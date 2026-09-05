@@ -16,8 +16,11 @@ jobs:
               
       - name: upload the file
         uses: actions/upload-artifact@v7
+        # with:
+        #   path: foo/example.txt
+        #   name: uploadedFile
         with:
-          path: foo/example.txt
+          path: foo
           name: uploadedFile
 
   downloadAnArtifact:
@@ -34,8 +37,8 @@ jobs:
       - name: cat the downloaded file
         run: |
               pwd
-              ls -ltrh
-              cat example.txt
+              ls -ltrh *
+              cat foo/example.txt
         
 
               
