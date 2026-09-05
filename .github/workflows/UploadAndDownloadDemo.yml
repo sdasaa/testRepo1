@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: create a file
         run: |
-              echo "hello world" >> text1.txt
+              echo "hello world" >> /someDir/text1.txt
               
       - name: upload the file
         uses: actions/upload-artifact@v7
