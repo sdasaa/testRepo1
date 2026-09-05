@@ -1,0 +1,43 @@
+name: caching demo
+description: Use the caching feature of github to archive files
+on: 
+  workflow_dispatch:
+
+jobs:
+  cachingDemo:
+    name: Demo the caching feature of github
+    runs-on: ubuntu-latest
+    steps:
+      - name: check for existing cache, if so restore it.
+        id: createCache
+        uses: actions/cache@v6
+        with:
+          key: cachedDir
+          path: cache
+
+      - name: If cache miss, Create a new file
+        if: steps.createCache.outputs.cache-hit != 'true'
+        run : |
+              pwd
+              ls -ltrh
+              mkdir -p cache/dependencies
+              ls -ltrh
+              echo 'Hello World1' >> cache/dependencies/example1.txt
+              echo 'Hello World2' >> cache/dependencies/example2.txt
+              ls -ltrh *
+
+      - name: If cache miss, Upload the cache
+        if: steps.createCache.outputs.cache-hit != 'true'
+        uses: actions/cache@v6
+        with:
+            key: cachedDir
+            path: cache
+            
+      - name: If cache-hit, cat the files
+        run: |
+              pwd
+              ls -ltrh *
+              cat cache/dependencies/*
+            
+            
+        
