@@ -4,26 +4,27 @@ on: workflow_dispatch
 
 jobs:
   uploadAnArtifact:
-    name: Create and Upload an artifact using actions/upload
+    name: Create and Upload an artifact using actions/upload-artifact
     runs-on: ubuntu-latest
     steps:
       - name: create a file
         run: |
               echo "hello world" >> text1.txt
+              
       - name: upload the file
-        uses: actions/upload@V4
+        uses: actions/upload-artifact@V4
         with:
           path: /someDir/text1.txt
           name: uploadedFile
 
   downloadAnArtifact:
-    name: Download an artifact that was created by upstream job
+    name: Download an artifact that was created by upstream job using actions/download-artifact
     needs: uploadAnArtifact
     runs-on: ubuntu-latest
 
     steps:
       - name: download the artifact
-        uses: actions/download@V4
+        uses: actions/download-artifact@V4
         with:
           name: uploadedFile
 
