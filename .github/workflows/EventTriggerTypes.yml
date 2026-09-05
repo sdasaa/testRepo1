@@ -2,11 +2,11 @@ name: Build Auto Pipeline
 description: This is an Automatic pipeline that will run for event triggers- Push, MR & manual trigger
 on: 
   workflow_dispatch:   
-  push:
-    branches:
-      - main
-      - feature/newOrder
-      - feature/macd_Upgrade
+  # push:
+  #   branches:
+  #     - main
+  #     - feature/newOrder
+  #     - feature/macd_Upgrade
   pull_request:
     types: 
       - assigned
