@@ -5,23 +5,30 @@ on:
   workflow_dispatch: 
 
 jobs:
-  differentGithubHostedRunners:
-    name: Run the job on a Container Github hosted regular compute instance
+  RunOnGhRunner:
+    name: Run the job Github hosted runner - regular compute instance
     runs-on: ubuntu-latest
     steps:
-      - name: hello World
+      - name: Run from GH runners
         run: |
-              echo "Hello World from ->  $GITHUB_EVENT"
-              echo "Hello World from container -> ${{ runner.environment }}"
+              echo "GITHUB_EVENT ->  $GITHUB_EVENT"
+              echo "runner.name -> ${{ runner.name }}"
+              echo "runner.environment -> ${{ runner.environment }}"
+              echo "runner.arch -> ${{ runner.arch }}"
+              echo "runner.arch -> ${{ runner.os }}"
+              
 
   RunOnContainer:
     name: Run the job on a Container
     runs-on: ubuntu-latest
     container:
-      image: alpine@latest
+      image: alpine:latest
 
     steps:
-      - name: Running from Container
+      - name: Running from Alpine Container
         run: |
-          echo "Hello World from container -> ${{ runner.environment }}"
+              echo "runner.name -> ${{ runner.name }}"
+              echo "runner.environment -> ${{ runner.environment }}"
+              echo "runner.arch -> ${{ runner.arch }}"
+              echo "runner.arch -> ${{ runner.os }}"
     
