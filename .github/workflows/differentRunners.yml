@@ -1,0 +1,27 @@
+name: Different Runners of action workflows
+description: Testing out the different runners that an action workflow can run on
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  differentGithubHostedRunners:
+    name: Run the job on a Container Github hosted regular compute instance
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello World
+        run: |
+              echo "Hello World from ->  $GITHUB_EVENT"
+              echo "Hello World from container -> ${{ runner.environment }}"
+
+  RunOnContainer:
+    name: Run the job on a Container
+    runs-on: ubuntu-latest
+    container:
+      image: alpine@latest
+
+    steps:
+      - name: Running from Container
+        run: |
+          echo "Hello World from container -> ${{ runner.environment }}"
+    
