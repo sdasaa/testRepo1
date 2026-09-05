@@ -12,6 +12,7 @@ jobs:
               pwd
               mkdir foo
               echo "hello world" >> foo/example.txt
+              tar -cvf foo.tar foo
               ls -ltrh
               
       - name: upload the file
@@ -20,8 +21,8 @@ jobs:
         #   path: foo/example.txt
         #   name: uploadedFile
         with:
-          path: /home/runner/work/testRepo1/testRepo1/foo
           name: uploadedFile
+          path: foo.tar
 
   downloadAnArtifact:
     name: Download an artifact that was created by upstream job using actions/download-artifact
@@ -37,7 +38,9 @@ jobs:
       - name: cat the downloaded file
         run: |
               pwd
-              ls -ltrh *
+              ls -ltrh
+              tar -xvf foo.tar
+              ls -ltrh
               cat foo/example.txt
         
 
