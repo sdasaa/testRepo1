@@ -1,0 +1,37 @@
+name: Upload and download demo
+description: Upload and download demo
+on: workflow_dispatch
+
+jobs:
+  uploadAnArtifact:
+    name: Create and Upload an artifact using actions/upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: create a file
+        run: |
+              echo "hello world" >> text1.txt
+      - name: upload the file
+        uses: actions/upload@V4
+        with:
+          path: /someDir/text1.txt
+          name: uploadedFile
+
+  downloadAnArtifact:
+    name: Download an artifact that was created by upstream job
+    needs: uploadAnArtifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: download the artifact
+        uses: actions/download@V4
+        with:
+          name: uploadedFile
+
+      - name: cat the downloaded file
+        run: |
+              cd /someDir/
+              cat text1.txt
+        
+
+              
+    
