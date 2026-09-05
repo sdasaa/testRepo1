@@ -9,12 +9,14 @@ jobs:
     steps:
       - name: create a file
         run: |
-              echo "hello world" >> /someDir/text1.txt
+              pwd
+              mkdir foo
+              echo "hello world" >> foo/example.txt
               
       - name: upload the file
         uses: actions/upload-artifact@v7
         with:
-          path: /someDir/text1.txt
+          path: foo/example.txt
           name: uploadedFile
 
   downloadAnArtifact:
@@ -30,8 +32,9 @@ jobs:
 
       - name: cat the downloaded file
         run: |
-              cd /someDir/
-              cat text1.txt
+              pwd
+              cd foo
+              cat example.txt
         
 
               
