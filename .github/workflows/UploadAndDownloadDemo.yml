@@ -12,6 +12,7 @@ jobs:
               pwd
               mkdir foo
               echo "hello world" >> foo/example.txt
+              ls -ltrh
               
       - name: upload the file
         uses: actions/upload-artifact@v7
@@ -33,7 +34,7 @@ jobs:
       - name: cat the downloaded file
         run: |
               pwd
-              cd foo
+              ls -ltrh
               cat example.txt
         
 
