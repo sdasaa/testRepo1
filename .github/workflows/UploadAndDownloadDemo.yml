@@ -20,7 +20,7 @@ jobs:
         #   path: foo/example.txt
         #   name: uploadedFile
         with:
-          path: ./foo/
+          path: /home/runner/work/testRepo1/testRepo1/foo
           name: uploadedFile
 
   downloadAnArtifact:
