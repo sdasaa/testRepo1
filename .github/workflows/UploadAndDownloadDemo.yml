@@ -12,7 +12,7 @@ jobs:
               echo "hello world" >> text1.txt
               
       - name: upload the file
-        uses: actions/upload-artifact@V4
+        uses: actions/upload-artifact@latest
         with:
           path: /someDir/text1.txt
           name: uploadedFile
@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: download the artifact
-        uses: actions/download-artifact@V4
+        uses: actions/download-artifact@latest
         with:
           name: uploadedFile
 
